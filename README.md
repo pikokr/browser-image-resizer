@@ -4,22 +4,24 @@
 
 This library allows for cross-browser image downscaling and resizing utilizing `<canvas>`. The code was part of Ross Turner's [HTML5-ImageUploader](https://github.com/rossturner/HTML5-ImageUploader).  Note that this is meant to be a browser-only utility and will not work in Node.js.
 
+<!--
 ## Demo
 
 - [Code Sandbox - NPM](https://codesandbox.io/s/6x20vw7l4r)
 - [Code Sandbox - In-Browser](https://codesandbox.io/s/nroxwpn21p)
+-->
 
 ## Installation
 
 ### NPM/Yarn
 
-- `npm install browser-image-resizer`
-- `yarn add browser-image-resizer`
+- `npm install git+https://github.com/misskey-dev/browser-image-resizer`
+- `yarn add git+https://github.com/misskey-dev/browser-image-resizer`
 
 ### Browser
 
 ```
-<script src="https://cdn.jsdelivr.net/gh/ericnograles/browser-image-resizer@2.2.0/dist/index.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/misskey-dev/browser-image-resizer@2.2.1-misskey.1/dist/index.js"></script>
 ```
 
 ## Usage
@@ -35,7 +37,6 @@ const config = {
   quality: 0.5,
   maxWidth: 800,
   maxHeight: 600,
-  autoRotate: true,
   debug: true
 };
 
@@ -104,7 +105,6 @@ const config = {
   quality: 0.5,
   maxWidth: 800,
   maxHeight: 600,
-  autoRotate: true,
   debug: true
 };
 
@@ -176,10 +176,19 @@ async function uploadImage(file) {
 | `quality`      | The quality of the image | 0.5 |
 | `maxWidth`      | The maximum width for the downscaled image | 800 |
 | `maxHeight` | The maximum height for the downscaled image | 600 |
-| `autoRotate` | Reads EXIF data on the image to determine orientation | true |
 | `debug` | console.log image update operations | false |
 | `mimeType` | specify image output type other than jpeg  | 'image/jpeg' |
 
 ### Outputs
 
 A Promise that yields an Image Blob
+
+### Output Image Specification
+The output image is derived from `canvas.toDataURL`.
+
+- EXIF and other metadata will be erased.
+- Rotation will be automatically corrected.
+  * It is based on the specifications of recent versions of modern browsers and may not work with older browsers.
+  * See https://github.com/w3c/csswg-drafts/issues/4666#issuecomment-610962845
+- Color profile is srgb. Firefox 97 does not attach the ICC profile, but Chrome does.
+- You can specify image/webp as the mimeType, but [Safari will ignore `quality` (treated as 1)](https://developer.apple.com/documentation/webkitjs/htmlcanvaselement/1630000-todataurl).

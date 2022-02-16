@@ -61,7 +61,7 @@ function scaleCanvasWithAlgorithm(canvas: HTMLCanvasElement, config: BrowserImag
     ?.getContext('2d')
     ?.createImageData(scaledCanvas.width, scaledCanvas.height);
 
-  if (!srcImgData || !destImgData) throw Error('Canvas is empty (scaleCanvasWithAlgorithm). You should run this script after th document is ready.');
+  if (!srcImgData || !destImgData) throw Error('Canvas is empty (scaleCanvasWithAlgorithm). You should run this script after the document is ready.');
 
   applyBilinearInterpolation(srcImgData, destImgData, scale);
 
@@ -171,7 +171,7 @@ export function scaleImage({ img, config }: {
   canvas.height = img.height;
   let ctx = canvas?.getContext('2d');
 
-  if (!ctx) throw Error('Canvas is empty (scaleImage). You should run this script after th document is ready.');
+  if (!ctx) throw Error('Canvas is empty (scaleImage). You should run this script after the document is ready.');
 
   ctx.drawImage(img, 0, 0);
 
