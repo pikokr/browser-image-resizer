@@ -190,5 +190,6 @@ The output image is derived from `canvas.toDataURL`.
 - Rotation will be automatically corrected.
   * It is based on the specifications of recent versions of modern browsers and may not work with older browsers.
   * See https://github.com/w3c/csswg-drafts/issues/4666#issuecomment-610962845
+  * Firefox support seems to be available from version 78. [by mei23](https://github.com/misskey-dev/misskey/pull/8216#issuecomment-1041382112)
 - Color profile is srgb. Firefox 97 does not attach the ICC profile, but Chrome does.
 - You can specify image/webp as the mimeType, but [Safari will ignore `quality` (treated as 1)](https://developer.apple.com/documentation/webkitjs/htmlcanvaselement/1630000-todataurl).
