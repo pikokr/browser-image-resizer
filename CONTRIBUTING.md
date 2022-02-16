@@ -30,5 +30,5 @@ Now any changes (via `npm run dev` above) will be reflected in the test web app 
 ### Removing Symlinks
 
 1. Go to `tests/bir-vue`
-1. Execute `npm unlink --no-save browser-image-resizer`
-1. In the top level `browser-image-resizer` directory, execute `npm unlink`
+1. Execute `npx yarn unlink --no-save browser-image-resizer`
+1. In the top level `browser-image-resizer` directory, execute `npx yarn unlink`
