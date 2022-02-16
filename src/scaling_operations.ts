@@ -46,52 +46,6 @@ function findMaxWidth(config: BrowserImageResizerConfig, canvas) {
   return mWidth;
 }
 
-function exifApplied(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, orientation: number, img: HTMLImageElement) {
-  let width = canvas.width;
-  let styleWidth = canvas.style.width;
-  let height = canvas.height;
-  let styleHeight = canvas.style.height;
-  if (orientation > 4) {
-    canvas.width = height;
-    canvas.style.width = styleHeight;
-    canvas.height = width;
-    canvas.style.height = styleWidth;
-  }
-  switch (orientation) {
-    case 2:
-      ctx.translate(width, 0);
-      ctx.scale(-1, 1);
-      break;
-    case 3:
-      ctx.translate(width, height);
-      ctx.rotate(Math.PI);
-      break;
-    case 4:
-      ctx.translate(0, height);
-      ctx.scale(1, -1);
-      break;
-    case 5:
-      ctx.rotate(0.5 * Math.PI);
-      ctx.scale(1, -1);
-      break;
-    case 6:
-      ctx.rotate(0.5 * Math.PI);
-      ctx.translate(0, -height);
-      break;
-    case 7:
-      ctx.rotate(0.5 * Math.PI);
-      ctx.translate(width, -height);
-      ctx.scale(-1, 1);
-      break;
-    case 8:
-      ctx.rotate(-0.5 * Math.PI);
-      ctx.translate(-width, 0);
-      break;
-  }
-  ctx.drawImage(img, 0, 0);
-  ctx.restore();
-}
-
 function scaleCanvasWithAlgorithm(canvas: HTMLCanvasElement, config: BrowserImageResizerConfig & { outputWidth: number }) {
   let scaledCanvas = document.createElement('canvas');
 
@@ -208,10 +162,9 @@ function applyBilinearInterpolation(srcCanvasData: ImageData, destCanvasData: Im
   }
 }
 
-export function scaleImage({ img, config, orientation = 1 }: {
+export function scaleImage({ img, config }: {
   img: HTMLImageElement;
   config: BrowserImageResizerConfig;
-  orientation: number;
 }) {
   let canvas = initializeOrGetCanvas()
   canvas.width = img.width;
@@ -220,10 +173,7 @@ export function scaleImage({ img, config, orientation = 1 }: {
 
   if (!ctx) throw Error('Canvas is empty (scaleImage). You should run this script after th document is ready.');
 
-  ctx.save();
-
-  // EXIF
-  exifApplied(canvas, ctx, orientation, img);
+  ctx.drawImage(img, 0, 0);
 
   let maxWidth = findMaxWidth(config, canvas);
 

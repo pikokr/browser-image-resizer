@@ -4,7 +4,6 @@ export declare type BrowserImageResizerConfig = {
     maxHeight: number;
     maxSize?: number;
     scaleRatio?: number;
-    autoRotate: boolean;
     debug: boolean;
     mimeType: string;
     onScale?: (imageData: string) => void;

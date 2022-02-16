@@ -23,7 +23,5 @@
     "dev": "node build.js watch"
   },
   "repository": "https://github.com/misskey-dev/browser-image-resizer.git",
-  "dependencies": {
-    "exifreader": "^4.2.0"
-  }
+  "dependencies": {}
 }
