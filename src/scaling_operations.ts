@@ -1,7 +1,8 @@
 import { dataURIToBlob } from './data_operations';
 import { initializeOrGetCanvas } from './browser_operations';
+import { BrowserImageResizerConfig } from '.';
 
-function findMaxWidth(config, canvas) {
+function findMaxWidth(config: BrowserImageResizerConfig, canvas) {
   //Let's find the max available width for scaled image
   let ratio = canvas.width / canvas.height;
   let mWidth = Math.min(
@@ -10,6 +11,7 @@ function findMaxWidth(config, canvas) {
     ratio * config.maxHeight
   );
   if (
+    config.maxSize &&
     config.maxSize > 0 &&
     config.maxSize < (canvas.width * canvas.height) / 1000
   )
@@ -44,7 +46,7 @@ function findMaxWidth(config, canvas) {
   return mWidth;
 }
 
-function exifApplied(canvas, ctx, orientation, img) {
+function exifApplied(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D, orientation: number, img: HTMLImageElement) {
   let width = canvas.width;
   let styleWidth = canvas.style.width;
   let height = canvas.height;
@@ -90,7 +92,7 @@ function exifApplied(canvas, ctx, orientation, img) {
   ctx.restore();
 }
 
-function scaleCanvasWithAlgorithm(canvas, config) {
+function scaleCanvasWithAlgorithm(canvas: HTMLCanvasElement, config: BrowserImageResizerConfig & { outputWidth: number }) {
   let scaledCanvas = document.createElement('canvas');
 
   let scale = config.outputWidth / canvas.width;
@@ -99,15 +101,17 @@ function scaleCanvasWithAlgorithm(canvas, config) {
   scaledCanvas.height = canvas.height * scale;
 
   let srcImgData = canvas
-    .getContext('2d')
-    .getImageData(0, 0, canvas.width, canvas.height);
+    ?.getContext('2d')
+    ?.getImageData(0, 0, canvas.width, canvas.height);
   let destImgData = scaledCanvas
-    .getContext('2d')
-    .createImageData(scaledCanvas.width, scaledCanvas.height);
+    ?.getContext('2d')
+    ?.createImageData(scaledCanvas.width, scaledCanvas.height);
+
+  if (!srcImgData || !destImgData) throw Error('Canvas is empty (scaleCanvasWithAlgorithm). You should run this script after th document is ready.');
 
   applyBilinearInterpolation(srcImgData, destImgData, scale);
 
-  scaledCanvas.getContext('2d').putImageData(destImgData, 0, 0);
+  scaledCanvas?.getContext('2d')?.putImageData(destImgData, 0, 0);
 
   return scaledCanvas;
 }
@@ -118,23 +122,23 @@ function getHalfScaleCanvas(canvas) {
   halfCanvas.height = canvas.height / 2;
 
   halfCanvas
-    .getContext('2d')
-    .drawImage(canvas, 0, 0, halfCanvas.width, halfCanvas.height);
+    ?.getContext('2d')
+    ?.drawImage(canvas, 0, 0, halfCanvas.width, halfCanvas.height);
 
   return halfCanvas;
 }
 
-function applyBilinearInterpolation(srcCanvasData, destCanvasData, scale) {
-  function inner(f00, f10, f01, f11, x, y) {
+function applyBilinearInterpolation(srcCanvasData: ImageData, destCanvasData: ImageData, scale: number) {
+  function inner(f00: number, f10: number, f01: number, f11: number, x: number, y: number) {
     let un_x = 1.0 - x;
     let un_y = 1.0 - y;
     return f00 * un_x * un_y + f10 * x * un_y + f01 * un_x * y + f11 * x * y;
   }
-  let i, j;
-  let iyv, iy0, iy1, ixv, ix0, ix1;
-  let idxD, idxS00, idxS10, idxS01, idxS11;
-  let dx, dy;
-  let r, g, b, a;
+  let i: number, j: number;
+  let iyv: number, iy0: number, iy1: number, ixv: number, ix0: number, ix1: number;
+  let idxD: number, idxS00: number, idxS10: number, idxS01: number, idxS11: number;
+  let dx: number, dy: number;
+  let r: number, g: number, b: number, a: number;
   for (i = 0; i < destCanvasData.height; ++i) {
     iyv = i / scale;
     iy0 = Math.floor(iyv);
@@ -204,11 +208,18 @@ function applyBilinearInterpolation(srcCanvasData, destCanvasData, scale) {
   }
 }
 
-export function scaleImage({ img, config, orientation = 1 } = {}) {
+export function scaleImage({ img, config, orientation = 1 }: {
+  img: HTMLImageElement;
+  config: BrowserImageResizerConfig;
+  orientation: number;
+}) {
   let canvas = initializeOrGetCanvas()
   canvas.width = img.width;
   canvas.height = img.height;
-  let ctx = canvas.getContext('2d');
+  let ctx = canvas?.getContext('2d');
+
+  if (!ctx) throw Error('Canvas is empty (scaleImage). You should run this script after th document is ready.');
+
   ctx.save();
 
   // EXIF

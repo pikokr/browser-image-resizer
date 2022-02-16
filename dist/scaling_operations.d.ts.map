@@ -1,0 +1,1 @@
+{"version":3,"file":"scaling_operations.d.ts","sourceRoot":"","sources":["../src/scaling_operations.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,yBAAyB,EAAE,MAAM,GAAG,CAAC;AAgN9C,wBAAgB,UAAU,CAAC,EAAE,GAAG,EAAE,MAAM,EAAE,WAAe,EAAE,EAAE;IAC3D,GAAG,EAAE,gBAAgB,CAAC;IACtB,MAAM,EAAE,yBAAyB,CAAC;IAClC,WAAW,EAAE,MAAM,CAAC;CACrB,QA6BA"}
