@@ -4,8 +4,8 @@
 name: Publish browser-image-resizer
 
 on:
-  release:
-    types: [created]
+  #release:
+  #  types: [created]
 
 jobs:
   build:
