@@ -1,13 +1,11 @@
 {
-    "extends": "./tsconfig.json",
-    "include": [
-      "./src/index.ts"
-    ],
-    "compilerOptions": {
-      "emitDeclarationOnly": true,
-      "isolatedModules": false,
-      "declaration": true,
-      // helps local development, could be dropped out of the NPM package though
-      "declarationMap": true
-    },
+	"extends": "./tsconfig.json",
+	"include": [
+		"./src/index.ts"
+	],
+	"compilerOptions": {
+		"emitDeclarationOnly": true,
+		"isolatedModules": false,
+		"declaration": true,
+	},
 }
