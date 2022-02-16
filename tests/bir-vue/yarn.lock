@@ -2093,7 +2093,7 @@ brorand@^1.0.1, brorand@^1.1.0:
   integrity sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8=
 
 "browser-image-resizer@file:../..":
-  version "2.3.0-dev.2"
+  version "2.2.1-misskey.1"
   dependencies:
     exifreader "^4.2.0"
 
