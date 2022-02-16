@@ -1594,11 +1594,6 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
-"@xmldom/xmldom@^0.7.5":
-  version "0.7.5"
-  resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.7.5.tgz#09fa51e356d07d0be200642b0e4f91d8e6dd408d"
-  integrity sha512-V3BIhmY36fXZ1OtVcI9W+FxQqxVLsPKcNjWigIaa81dLC9IolJl5Mt4Cvhmr0flUnjSpTdrbMTSbXqYqV5dT6A==
-
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -2091,11 +2086,6 @@ brorand@^1.0.1, brorand@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
   integrity sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8=
-
-"browser-image-resizer@file:../..":
-  version "2.2.1-misskey.1"
-  dependencies:
-    exifreader "^4.2.0"
 
 browserify-aes@^1.0.0, browserify-aes@^1.0.4:
   version "1.2.0"
@@ -3684,13 +3674,6 @@ execa@^3.3.0:
     p-finally "^2.0.0"
     signal-exit "^3.0.2"
     strip-final-newline "^2.0.0"
-
-exifreader@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/exifreader/-/exifreader-4.2.0.tgz#c1db08348a17dcaba345bfe63d91e15c24681360"
-  integrity sha512-PfBYmkC4jqVRC+hIJevXuCY6RQDCy3XrIb9+S4Ro2gSeRepbDLx3SQoD89Go3e+eeV5QdEg71q3aWA2DgeKSGw==
-  optionalDependencies:
-    "@xmldom/xmldom" "^0.7.5"
 
 expand-brackets@^2.1.4:
   version "2.1.4"
