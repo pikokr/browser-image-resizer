@@ -8,5 +8,4 @@ export declare type BrowserImageResizerConfig = {
     mimeType: string;
     onScale?: (imageData: string) => void;
 };
-export declare function readAndCompressImage(file: Blob, userConfig: BrowserImageResizerConfig): Promise<Blob>;
-//# sourceMappingURL=index.d.ts.map
+export declare function readAndCompressImage(file: Blob, userConfig: Partial<BrowserImageResizerConfig>): Promise<Blob>;

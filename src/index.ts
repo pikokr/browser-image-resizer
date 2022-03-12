@@ -20,7 +20,7 @@ const DEFAULT_CONFIG: BrowserImageResizerConfig = {
   mimeType: 'image/jpeg',
 };
 
-export function readAndCompressImage(file: Blob, userConfig: BrowserImageResizerConfig) {
+export function readAndCompressImage(file: Blob, userConfig: Partial<BrowserImageResizerConfig>) {
   return new Promise<Blob>((resolve, reject) => {
     const img = initializeOrGetImg();
     const reader = new FileReader();
