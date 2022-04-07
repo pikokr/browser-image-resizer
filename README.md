@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This library allows for cross-browser image downscaling and resizing utilizing `<canvas>`. The code was part of Ross Turner's [HTML5-ImageUploader](https://github.com/rossturner/HTML5-ImageUploader).  Note that this is meant to be a browser-only utility and will not work in Node.js.
+This library allows for cross-browser image downscaling and resizing utilizing `<canvas>`. Note that this is browser-only utility and will not work in Node.js.
 
 <!--
 ## Demo
