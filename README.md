@@ -18,11 +18,13 @@ This library allows for cross-browser image downscaling and resizing utilizing `
 - `npm install git+https://github.com/misskey-dev/browser-image-resizer`
 - `yarn add git+https://github.com/misskey-dev/browser-image-resizer`
 
+<!--
 ### Browser
 
 ```
 <script src="https://cdn.jsdelivr.net/gh/misskey-dev/browser-image-resizer@2.2.1-misskey.2/dist/index.js"></script>
 ```
+-->
 
 ## Usage
 
@@ -95,7 +97,7 @@ async function uploadImage(file) {
   }
 }
 ```
-
+<!--
 ### Browser
 
 #### Promises
@@ -162,7 +164,7 @@ async function uploadImage(file) {
   }
 }
 ```
-
+-->
 
 ### readAndCompressImage(file, config) => Promise<Blob>
 
