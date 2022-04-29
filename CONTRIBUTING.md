@@ -21,7 +21,7 @@ Thanks for helping to shake out any issues with this library! The setup is very 
 To test this locally on a web app of your choosing, you'll want to symlink this library in your NPM. That way, any changes locally can be reflected in your test app.
 
 1. In this directory, execute `npx yarn link`
-1. `cd tests/bir-vue`
+1. `cd tests/vite-project`
 1. Execute `npx yarn install`
 1. Execute `npx yarn link browser-image-resizer`
 
@@ -29,7 +29,7 @@ Now any changes (via `npm run dev` above) will be reflected in the test web app 
 
 ### Removing Symlinks
 
-1. Go to `tests/bir-vue`
+1. Go to `tests/vite-project`
 1. Execute `npx yarn unlink --no-save browser-image-resizer`
 1. In the top level `browser-image-resizer` directory, execute `npx yarn unlink`
 
